@@ -1,0 +1,51 @@
+@keyframes jumping {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: var(--alt-color);
+    box-shadow: var(--price-shadow), inset;
+  }
+  50% {
+    background-color: var(--accent-color);
+  }
+  100% {
+    box-shadow: var(--price-shadow), inset;
+
+    background-color: var(--alt-color);
+  }
+
+  75% {
+    background-color: var(--accent-color);
+  }
+  25% {
+    box-shadow: var(--price-shadow), inset;
+
+    background-color: var(--alt-color);
+  }
+  0% {
+    background-color: var(--accent-color), inset;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
