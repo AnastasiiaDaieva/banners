@@ -13,15 +13,14 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "browser-sync": "^3.0.2",
     "gh-pages": "^6.1.1",
     "gulp": "^5.0.0",
     "gulp-autoprefixer": "^9.0.0",
     "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^7.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
-    "gulp-terser": "^2.1.0",
-    "gulp-uglify": "^3.0.2"
+    "gulp-terser": "^2.1.0"
   },
   "dependencies": {
     "sass": "^1.77.8"
