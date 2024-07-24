@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetchData();
 
-    const html = res.map(offerCard).join("");
+    const html = res?.map(offerCard).join("");
 
     list.innerHTML = html;
     const downloadBtns = document.querySelectorAll(".offer__download");

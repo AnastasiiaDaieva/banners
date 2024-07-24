@@ -31,14 +31,14 @@ function scss() {
 }
 
 function js() {
-  return src("src/js/*.js")
+  return src("./src/js/*.js")
     .pipe(replace(/\.\.\/src\/img\//g, "./img/"))
     .pipe(terser())
     .pipe(dest("./dist/js"));
 }
 
 function imgs() {
-  return src("./src/img/*.{png,jp(e)g}")
+  return src("./src/img/*.png", { encoding: false })
     .pipe(
       imagemin([
         imagemin.optipng({ optimizationLevel: 2 }),
@@ -52,7 +52,7 @@ function taskWatch() {
   watch("src/*.html", html);
   watch("./src/scss/*.scss", scss);
   watch("./src/js/*.js", js);
-  watch("./src/img/*.{png,jp(e)g}", js);
+  watch("./src/img/*.png", js);
 }
 
 exports.taskWatch = taskWatch;
