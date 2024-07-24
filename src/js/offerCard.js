@@ -14,9 +14,11 @@ export default function offerCard({
             price_key?.includes("%")
               ? `<div class="price__discount">
           <div class="price__ribbon">
-          <div class="ribbon"> <div> <p class="price_discount-amount">${price_key}</p>
-              
-          <p>OFF</p></div> </div>
+          <div class="ribbon"> <div>
+    <p class="price__discount-amount">${price_key}</p>
+
+  <p  class="price__discount-off">OFF</p>
+          </div> </div>
           </div>
           </div>`
               : ""
