@@ -5,9 +5,12 @@ const terser = require("gulp-terser");
 const minifier = require("gulp-clean-css");
 const rename = require("gulp-rename");
 const imagemin = require("gulp-imagemin");
+const replace = require("gulp-replace");
 
 function html() {
-  return src("src/*.html", { allowEmpty: true }).pipe(dest("./dist"));
+  return src("src/*.html", { allowEmpty: true })
+    .pipe(replace(/\.\.\/src\/img\//g, "./img/"))
+    .pipe(dest("./dist"));
 }
 
 function scss() {
@@ -27,7 +30,10 @@ function scss() {
 }
 
 function js() {
-  return src("src/js/*.js").pipe(terser()).pipe(dest("./dist/js"));
+  return src("src/js/*.js")
+    .pipe(replace(/\.\.\/src\/img\//g, "./img/"))
+    .pipe(terser())
+    .pipe(dest("./dist/js"));
 }
 
 function imgs() {
