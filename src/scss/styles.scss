@@ -168,17 +168,29 @@ h1,
   }
 }
 
-.arrow {
+.arrow__wrapper {
   display: none;
   position: absolute;
+
+  filter: drop-shadow(0px 4px 4px rgba(50, 50, 0, 0.5));
   z-index: 5;
+}
+
+.arrow {
   width: 160px;
   height: 205px;
+  animation: jumping 2000ms infinite;
   background-color: var(--prompt-btn);
   clip-path: polygon(50% 0%, 100% 35%, 100% 100%, 0 100%, 0 34%);
-  animation: jumping 2000ms infinite;
-  top: 30px;
-  left: 10px;
+
+  &.rotate-180 {
+    clip-path: polygon(50% 100%, 100% 65%, 100% 0, 0 0, 0 66%);
+
+    & .arrow__text {
+      bottom: 50px;
+      top: 0;
+    }
+  }
 }
 
 .arrow__text {

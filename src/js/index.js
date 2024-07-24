@@ -1,7 +1,7 @@
 import refs from "./refs.js";
 import offerCard from "./offerCard.js";
 
-const { list, arrow, loader } = refs;
+const { list, arrow, arrowWrapper, loader } = refs;
 
 async function fetchData() {
   try {
@@ -20,21 +20,19 @@ async function fetchData() {
 }
 
 function getBrowserInfo() {
-  const ua = navigator.userAgent;
-  let tem;
-  const M = ua.match(/(opera|chrome|firefox|edge)\/?\s*(\d+)/i) || [];
-  if (/trident/i.test(ua)) {
-    tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
-    return { name: "IE", version: tem[1] || "" };
-  }
-  if (M[1] === "Chrome") {
-    tem = ua.match(/\bOPR|Edge\/(\d+)/);
-    if (tem != null) {
-      return { name: "Opera", version: tem[1] };
+  const userAgent = navigator.userAgent;
+  let browserInfo;
+  const matchingBrowserData =
+    userAgent.match(/(chrome|safari|firefox)\/?\s*(\d+)/i) || [];
+
+  if (matchingBrowserData[1] === "Chrome") {
+    browserInfo = userAgent.match(/\bEdg\/(\d+)/);
+    if (browserInfo != null) {
+      return { name: "Edge", version: browserInfo[1] };
     }
   }
-  const name = M[1];
-  const version = M[2];
+  const name = matchingBrowserData[1];
+  const version = matchingBrowserData[2];
   return {
     name: name,
     version: version,
@@ -43,26 +41,34 @@ function getBrowserInfo() {
 
 const browser = getBrowserInfo();
 
-function applyStyles(styles) {
+function applyStyles(styles, rotate) {
   for (const property in styles) {
-    arrow.style[property] = styles[property];
+    arrowWrapper.style[property] = styles[property];
+  }
+
+  if (rotate) {
+    arrow.classList.add("rotate-180");
+  } else {
+    arrow.classList.remove("rotate-180");
   }
 }
 
-console.log(browser.name);
-
 switch (browser.name.toLowerCase()) {
   case "chrome":
-    applyStyles({ bottom: "0", left: "50%", transform: "translateX(-50%)" });
+    if (+browser.version < 115) {
+      applyStyles({ bottom: "70px", left: "10px" }, true);
+    } else {
+      applyStyles({ top: "30px", right: "15px" });
+    }
     break;
   case "firefox":
-    applyStyles({ top: "30px", left: "85%" });
+    applyStyles({ top: "30px", right: "35px" });
     break;
   case "edge":
-    applyStyles({ bottom: "0", right: "10px" });
+    applyStyles({ top: "30px", right: "25px" });
     break;
   default:
-    applyStyles({ top: "30px", right: "40px" });
+    applyStyles({ top: "30px", right: "10px" });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -74,18 +80,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     list.innerHTML = html;
     const downloadBtns = document.querySelectorAll(".offer__download");
-    console.log(downloadBtns);
     downloadBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        if (arrow) {
+        if (arrowWrapper) {
           setTimeout(() => {
-            arrow.style.display = "block";
+            arrowWrapper.style.display = "block";
           }, 1500);
         }
       });
     });
-
-    console.log(res);
   } catch (error) {
     console.log("err", error);
   } finally {

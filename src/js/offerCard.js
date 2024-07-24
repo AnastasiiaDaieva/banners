@@ -6,8 +6,7 @@ export default function offerCard({
   is_best,
   link,
 }) {
-  return `
-        <li class="offer__card">
+  return `<li class="offer__card">
           <div class="price__container">
           ${is_best ? `<div class="price__best">Best Value</div>` : ""}
           
@@ -37,6 +36,5 @@ export default function offerCard({
          </div> <a href="${link}" target="_blank" class="offer__download">
          <span>Download</span> <img src="../src/img/download.png" alt="Download" height="30" width="30"/>
          </a>
-        </li>
-      `;
+        </li>`;
 }

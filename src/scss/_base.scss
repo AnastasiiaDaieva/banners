@@ -7,6 +7,21 @@
   //   outline: 1px solid red;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--main-font);
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: none;
 }
@@ -34,11 +49,6 @@ h6 {
   margin: 0;
 }
 
-body {
-  position: relative;
-  height: 100%;
-  font-family: var(--main-font);
-}
 header {
   position: absolute;
   top: 0;
@@ -53,7 +63,7 @@ main {
 }
 footer {
   height: 70px;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -66,13 +76,17 @@ footer {
 
 .header__container,
 .footer__container {
+  & > div {
+    color: var(--alt-color);
+  }
   & > div:first-child {
     color: var(--accent-color);
     text-transform: uppercase;
+    margin-right: 1px;
   }
 
-  & > div:last-child {
-    color: var(--alt-color);
+  & > div:not(:last-child) {
+    margin-right: 3px;
   }
 }
 
@@ -81,6 +95,7 @@ footer {
   display: flex;
   align-items: center;
 }
+
 .footer__container {
   display: flex;
   flex-direction: column;
