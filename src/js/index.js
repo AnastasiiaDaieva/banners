@@ -23,7 +23,7 @@ function getBrowserInfo() {
   const userAgent = navigator.userAgent;
   let browserInfo;
   const matchingBrowserData =
-    userAgent.match(/(chrome|safari|firefox)\/?\s*(\d+)/i) || [];
+    userAgent.match(/(chrome|firefox)\/?\s*(\d+)/i) || [];
 
   if (matchingBrowserData[1] === "Chrome") {
     browserInfo = userAgent.match(/\bEdg\/(\d+)/);
