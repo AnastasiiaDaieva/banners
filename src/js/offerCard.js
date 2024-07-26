@@ -6,37 +6,46 @@ export default function offerCard({
   is_best,
   link,
 }) {
-  return `<li class="offer__card">
-          <div class="price__container">
-          ${is_best ? `<div class="price__best">Best Value</div>` : ""}
-          
-          ${
-            price_key?.includes("%")
-              ? `<div class="price__discount">
-          <div class="price__ribbon">
-          <div class="ribbon"> <div>
-    <p class="price__discount-amount">${price_key}</p>
-
-  <p  class="price__discount-off">OFF</p>
-          </div> </div>
+  return `<li class="offers__card">
+      <div class="price">
+        ${is_best ? `<div class="price__best">Best Value</div>` : ""}
+        ${
+          price_key?.includes("%")
+            ? `<div class="price__discount">
+      <div class="price__discount-ribbon">
+        <div class="price__discount-ribbon-wrapper">
+          <div class="price__discount-text">
+            <p class="price__discount-amount">${price_key}</p>
+            <p class="price__discount-off">OFF</p>
           </div>
-          </div>`
-              : ""
-          }
-         <div class="price__text-wrapper"> <p class="price__amount">$${amount}</p>
+        </div>
+      </div>
+    </div>`
+            : ""
+        }
+        <div class="price__main">
+          <p class="price__main-amount">$${amount}</p>
           ${
             price_key?.includes("%")
-              ? `<p class="price__original">
+              ? `<p class="price__main-original">
           $${+amount * (100 / price_key.replace(/%/g, ""))} 
           </p>`
               : ""
-          }</div>
-          
-          </div>
-          <div class="description__container"><p>${name_prod}</p>
-          <p class="description__license">${license_name}</p>
-         </div> <a href="${link}" target="_blank" class="offer__download">
-         <span>Download</span> <img src="../src/img/download.png" alt="Download" height="30" width="30"/>
-         </a>
-        </li>`;
+          }
+        </div>
+      </div>
+      <div class="description">
+        <p>${name_prod}</p>
+        <p class="description__license">${license_name}</p>
+      </div>
+      <a href="${link}" target="_blank" class="download">
+        <span class="download__text">Download</span>
+        <img
+          src="../src/img/download.png"
+          alt="Download"
+          height="30"
+          width="30"
+        />
+      </a>
+    </li>`;
 }

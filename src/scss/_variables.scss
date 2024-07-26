@@ -3,6 +3,8 @@
   --main-color: #000;
   --alt-color: #fff;
   --secondary-color: #929292;
+  --card-bg: #f3f5f6;
+  --prompt-btn-bg: #3683f7;
   --btn-gradient: linear-gradient(
     0deg,
     #130999 -0.01%,
@@ -11,16 +13,11 @@
     #1c9e83 87.44%,
     #1daa81 99.99%
   );
-  --card-bg: #f3f5f6;
-  --price-shadow: 0px 0px 4px 0px #00000040;
-  --accent-font: "Bebas Neue";
-  --main-font: "Roboto", "sans-serif";
-  --prompt-btn: #3683f7;
   --ribbon-color: linear-gradient(
     134.49deg,
     #f40106 19%,
     #ff3131 35%,
-    #e40210 34.1%,
+    #e40210 35.1%,
     #7b0022 37.73%,
     #ff0000 54.13%,
     #ff0505 59.57%,
@@ -29,4 +26,11 @@
     #ff3131 75.5%,
     #f40106 92.58%
   );
+  --price-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+  --arrow-shadow: 0px 4px 4px rgba(50, 50, 0, 0.5);
+  --arrow-polygon: polygon(50% 0%, 100% 35%, 100% 100%, 0 100%, 0 34%);
+  --arrow-polygon-180: polygon(50% 100%, 100% 65%, 100% 0, 0 0, 0 66%);
+  --rotate-45: rotate(-45deg);
+  --accent-font: "Bebas Neue", "sans-serif";
+  --main-font: "Roboto", "sans-serif";
 }

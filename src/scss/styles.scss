@@ -1,21 +1,6 @@
-@import "./keyframes";
 @import "./variables";
+@import "./keyframes";
 @import "./base";
-
-h1 {
-  text-align: center;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-  margin-bottom: 75px;
-}
-
-h1,
-.price__amount {
-  font-family: var(--accent-font);
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 48px;
-}
 
 .main__container {
   padding-top: 115px;
@@ -23,199 +8,22 @@ h1,
   min-height: calc(100vh - 50px - 70px);
 }
 
-.offer__card {
-  position: relative;
-  background-color: var(--card-bg);
-  height: 220px;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.price__container {
+.arrow {
+  display: none;
   position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100px;
-  width: 240px;
-  box-shadow: var(--price-shadow);
-  padding: 15px;
-  background-color: var(--alt-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.price__best {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: var(--accent-color);
-  font-weight: 500;
-  padding: 5px 10px;
-  font-size: 12px;
-}
-.price__discount {
-  width: 240px;
-  position: absolute;
-}
-.price__ribbon {
-  display: block;
-  background: transparent;
-  height: 105px;
-  width: 105px;
-
-  position: relative;
-  top: 50px;
-  left: 50%;
-  margin-left: -100px;
-
-  & .ribbon {
-    background: transparent;
-
-    height: 105px;
-    width: 110px;
-    position: absolute;
-    top: -59px;
-    left: -31px;
-    overflow: hidden;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 45px;
-    border-bottom-left-radius: 13px;
-    border-top-right-radius: 25px;
-
-    &:after {
-      content: "";
-      display: block;
-      -webkit-border-radius: 0 10px 10px 0;
-      border-radius: 0 10px 0 0;
-      width: 50px;
-      height: 12px;
-      position: absolute;
-      right: -19px;
-      top: -1px;
-      background: var(--ribbon-color);
-    }
-    &:before {
-      content: "";
-      display: block;
-      -webkit-border-radius: 0 0 10px 10px;
-      border-radius: 0 0 10px 10px;
-      width: 10px;
-      height: 44px;
-      position: absolute;
-      right: 100px;
-      top: 81px;
-      background: var(--ribbon-color);
-    }
-    & > div {
-      width: 240px;
-      height: 47px;
-      position: relative;
-      top: 11px;
-      left: -88px;
-      z-index: 1;
-      overflow: hidden;
-      transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg); /* IE 9 */
-      -moz-transform: rotate(-45deg); /* Firefox */
-      -webkit-transform: rotate(-45deg); /* Safari and Chrome */
-      -o-transform: rotate(-45deg); /* Opera */
-
-      background: var(--ribbon-color);
-    }
-  }
-}
-.price__discount-amount {
-  color: #fff;
-  position: absolute;
-  top: 0;
-  left: 45%;
+  filter: drop-shadow(var(--arrow-shadow));
   z-index: 5;
-  font-weight: 500;
-  font-family: var(--accent-font);
-  font-size: 28px;
-}
-
-.price__discount-off {
-  color: #fff;
-  position: absolute;
-  top: 28px;
-  left: 46%;
-  z-index: 5;
-  text-transform: uppercase;
-  font-size: 16px;
-}
-
-.price__original {
-  color: var(--secondary-color);
-  text-decoration: line-through;
-}
-
-.price__text-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.description__container {
-  padding-top: 60px;
-  text-align: center;
-  font-size: 18px;
-}
-
-.description__license {
-  font-weight: 700;
-}
-.offer__download {
-  background: var(--btn-gradient);
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 190px;
-  padding-left: 35px;
-  padding-right: 10px;
-  transition: all 450ms linear;
-
-  & span {
-    margin-right: 15px;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: var(--alt-color);
-  }
-
-  &:hover {
-    background: var(--accent-color);
-    box-shadow: var(--price-shadow);
-    transition: all 450ms linear;
-
-    & * {
-      color: var(--main-color);
-    }
-  }
 }
 
 .arrow__wrapper {
-  display: none;
-  position: absolute;
-
-  filter: drop-shadow(0px 4px 4px rgba(50, 50, 0, 0.5));
-  z-index: 5;
-}
-
-.arrow {
   width: 160px;
   height: 205px;
   animation: jumping 2000ms infinite;
-  background-color: var(--prompt-btn);
-  clip-path: polygon(50% 0%, 100% 35%, 100% 100%, 0 100%, 0 34%);
+  background-color: var(--prompt-btn-bg);
+  clip-path: var(--arrow-polygon);
 
   &.rotate-180 {
-    clip-path: polygon(50% 100%, 100% 65%, 100% 0, 0 0, 0 66%);
+    clip-path: var(--arrow-polygon-180);
 
     & .arrow__text {
       bottom: 50px;
@@ -237,51 +45,14 @@ h1,
   left: 50%;
   right: 50%;
 
-  & .arrow__open {
+  & .arrow__text-main {
     font-family: var(--accent-font);
     font-size: 72px;
   }
 }
-.offer__card {
-  max-width: 360px;
-  min-width: 300px;
-}
-
-@media screen and (max-width: 767.99px) {
-  .offers .offer__card:not(:last-child) {
-    margin-bottom: 100px;
-  }
-
-  .offer__card {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-@media screen and (min-width: 768px) {
-  .main__container {
-    min-height: calc(100vh - 50px - 70px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .offers {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-
-  .offers .offer__card:not(:last-child) {
-    margin-bottom: 50px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-}
 
 .loader {
-  background-color: #000;
+  background-color: var(--main-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -289,12 +60,243 @@ h1,
   width: 100%;
   position: absolute;
   z-index: 10;
-  & .box {
+  & .loader__box {
     width: 150px;
     height: 150px;
     border-radius: 10px;
     background-color: var(--alt-color);
     box-shadow: var(--price-shadow);
     animation: colorChange 5s infinite, rotate 5s infinite linear;
+  }
+}
+
+.brand-name {
+  color: var(--accent-color);
+}
+
+.thank-you__heading {
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  margin-bottom: 75px;
+  font-family: var(--accent-font);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.offers__card {
+  position: relative;
+  background-color: var(--card-bg);
+  height: 220px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 360px;
+  min-width: 300px;
+}
+
+.download {
+  background: var(--btn-gradient);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 190px;
+  padding-left: 35px;
+  padding-right: 10px;
+  transition: all 450ms linear;
+
+  & .download__text {
+    margin-right: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--alt-color);
+  }
+
+  &:hover {
+    background: var(--accent-color);
+    box-shadow: var(--price-shadow);
+    transition: all 450ms linear;
+
+    & * {
+      color: var(--main-color);
+    }
+  }
+}
+
+.price {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100px;
+  width: 240px;
+  box-shadow: var(--price-shadow);
+  padding: 15px;
+  background-color: var(--alt-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price__best {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--accent-color);
+  font-weight: 500;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.price__discount {
+  width: 240px;
+  position: absolute;
+
+  & .price__discount-text {
+    width: 240px;
+    height: 47px;
+    position: relative;
+    top: 11px;
+    left: -88px;
+    z-index: 1;
+    overflow: hidden;
+    transform: var(--rotate-45);
+    -ms-transform: var(--rotate-45); /* IE 9 */
+    -moz-transform: var(--rotate-45); /* Firefox */
+    -webkit-transform: var(--rotate-45); /* Safari and Chrome */
+    -o-transform: var(--rotate-45); /* Opera */
+    background: var(--ribbon-color);
+
+    & .price__discount-amount {
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 45%;
+      z-index: 5;
+      font-weight: 500;
+      font-family: var(--accent-font);
+      font-size: 28px;
+    }
+
+    & .price__discount-off {
+      color: var(--alt-color);
+      position: absolute;
+      top: 28px;
+      left: 46%;
+      z-index: 5;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+  }
+}
+
+.price__discount-ribbon {
+  display: block;
+  background: transparent;
+  height: 105px;
+  width: 105px;
+  position: relative;
+  top: 50px;
+  left: 50%;
+  margin-left: -100px;
+
+  & .price__discount-ribbon-wrapper {
+    background: transparent;
+    height: 105px;
+    width: 110px;
+    position: absolute;
+    top: -59px;
+    left: -31px;
+    overflow: hidden;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 13px;
+    border-top-right-radius: 19px;
+
+    &:after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 12px;
+      position: absolute;
+      right: -19px;
+      top: -1px;
+      background: var(--ribbon-color);
+    }
+    &:before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 44px;
+      position: absolute;
+      right: 100px;
+      top: 81px;
+      background: var(--ribbon-color);
+    }
+  }
+}
+
+.price__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.price__main-amount {
+  font-family: var(--accent-font);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.price__main-original {
+  color: var(--secondary-color);
+  text-decoration: line-through;
+}
+
+.description {
+  padding-top: 60px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.description__license {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 767.99px) {
+  .offers .offers__card:not(:last-child) {
+    margin-bottom: 100px;
+  }
+
+  .offers__card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .thank-you {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .offers {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .offers .offers__card:not(:last-child) {
+    margin-bottom: 50px;
   }
 }

@@ -16,30 +16,28 @@ body {
   font-family: var(--main-font);
 }
 
-.wrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-}
-
 a {
   text-decoration: none;
 }
+
 p,
 span {
   margin: 0;
 }
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 img {
   display: block;
   margin: 0;
   max-width: 100%;
   height: auto;
 }
+
 h1,
 h2,
 h3,
@@ -49,25 +47,32 @@ h6 {
   margin: 0;
 }
 
-header {
+.header {
   position: absolute;
   top: 0;
   left: 0;
   height: 50px;
   width: 100%;
-  background-color: #000;
+  background-color: var(--main-color);
 }
 
-main {
+.main {
   flex: 1;
 }
-footer {
-  height: 70px;
+
+.footer {
   position: fixed;
+  height: 70px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #000;
+  background-color: var(--main-color);
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
 .container {
@@ -76,24 +81,17 @@ footer {
 
 .header__container,
 .footer__container {
-  & > div {
-    color: var(--alt-color);
-  }
-  & > div:first-child {
-    color: var(--accent-color);
-    text-transform: uppercase;
-    margin-right: 1px;
-  }
-
-  & > div:not(:last-child) {
-    margin-right: 3px;
-  }
+  text-transform: uppercase;
 }
 
 .header__container {
   font-size: 16px;
   display: flex;
   align-items: center;
+  color: var(--alt-color);
+  & > div:not(:last-child) {
+    margin-right: 3px;
+  }
 }
 
 .footer__container {
@@ -101,10 +99,14 @@ footer {
   flex-direction: column;
   justify-content: center;
   font-size: 16px;
+  color: var(--alt-color);
 }
+
 .footer__copyright {
   font-size: 14px;
+  text-transform: none;
 }
+
 @media screen and (max-width: 767.99px) {
   .container {
     width: 100%;

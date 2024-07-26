@@ -3,11 +3,12 @@ import offerCard from "./offerCard.js";
 
 const { list, arrow, arrowWrapper, loader } = refs;
 
+const API_URL = "https://veryfast.io/t/front_test_api.php";
+const ROTATE_CLASS = "rotate-180";
+
 async function fetchData() {
   try {
-    const res = await fetch("https://veryfast.io/t/front_test_api.php").then(
-      (r) => r.json()
-    );
+    const res = await fetch(API_URL).then((r) => r.json());
 
     if (!res || res?.state !== "ok") {
       throw new Error("failed");
@@ -39,56 +40,67 @@ function getBrowserInfo() {
   };
 }
 
-const browser = getBrowserInfo();
-
 function applyStyles(styles, rotate) {
   for (const property in styles) {
-    arrowWrapper.style[property] = styles[property];
+    arrow.style[property] = styles[property];
   }
 
   if (rotate) {
-    arrow.classList.add("rotate-180");
+    arrowWrapper.classList.add(ROTATE_CLASS);
   } else {
-    arrow.classList.remove("rotate-180");
+    arrowWrapper.classList.remove(ROTATE_CLASS);
   }
 }
 
-switch (browser.name.toLowerCase()) {
-  case "chrome":
-    if (+browser.version < 115) {
-      applyStyles({ bottom: "70px", left: "10px" }, true);
-    } else {
-      applyStyles({ top: "30px", right: "15px" });
-    }
-    break;
-  case "firefox":
-    applyStyles({ top: "30px", right: "35px" });
-    break;
-  case "edge":
-    applyStyles({ top: "30px", right: "25px" });
-    break;
-  default:
-    applyStyles({ top: "30px", right: "10px" });
+function detectCurrentBrowserAndApplyStyles() {
+  const browser = getBrowserInfo();
+
+  switch (browser.name.toLowerCase()) {
+    case "chrome":
+      if (+browser.version < 115) {
+        applyStyles({ bottom: "70px", left: "10px" }, true);
+      } else {
+        applyStyles({ top: "30px", right: "15px" });
+      }
+      break;
+    case "firefox":
+      applyStyles({ top: "30px", right: "35px" });
+      break;
+    case "edge":
+      applyStyles({ top: "30px", right: "25px" });
+      break;
+    default:
+      applyStyles({ top: "30px", right: "10px" });
+  }
+}
+
+function setUpButtons() {
+  const downloadBtns = document.querySelectorAll(".download");
+  downloadBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (arrow) {
+        setTimeout(() => {
+          arrow.style.display = "block";
+        }, 1500);
+      }
+    });
+  });
+}
+
+function buildCards(res) {
+  const html = res?.map(offerCard).join("");
+  if (list) {
+    list.innerHTML = html;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   loader.style.display = "flex";
+  detectCurrentBrowserAndApplyStyles();
   try {
     const res = await fetchData();
-
-    const html = res?.map(offerCard).join("");
-
-    list.innerHTML = html;
-    const downloadBtns = document.querySelectorAll(".offer__download");
-    downloadBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (arrowWrapper) {
-          setTimeout(() => {
-            arrowWrapper.style.display = "block";
-          }, 1500);
-        }
-      });
-    });
+    buildCards(res);
+    setUpButtons();
   } catch (error) {
     console.log("err", error);
   } finally {
