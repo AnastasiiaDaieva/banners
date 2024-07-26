@@ -10,7 +10,7 @@ const replace = require("gulp-replace");
 function html() {
   return src("src/*.html", { allowEmpty: true })
     .pipe(replace(/\.\.\/src\/img\//g, "./img/"))
-    .pipe(replace(/\.\.\/dist\/css\//g, "./css/"))
+    .pipe(replace(/\.\.\/dist\//g, "./"))
     .pipe(dest("./dist"));
 }
 
